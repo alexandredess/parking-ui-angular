@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ParkingInfo } from '../parkingInfo';
+import { ParkingService } from '../parking.service';
+import {observable} from 'rxjs';
 
 @Component({
   selector: 'app-parkings',
@@ -9,29 +11,29 @@ import { ParkingInfo } from '../parkingInfo';
 export class ParkingsComponent implements OnInit {
 
   parkings : ParkingInfo[] | undefined;
-  constructor() { }
+  isLoaded: boolean = false;
+
+  constructor(private parkingService: ParkingService) { }
 
   ngOnInit(): void {
-    let parking1 : ParkingInfo = {
-      id:1,
-      nom: 'parking 1',
-      nbPlacesDispo : 150,
-      nbPlacesTotal : 200,
-      statut : 'OUVERT',
-      heureMaj :'20h25',
-    }
-    let parking2 : ParkingInfo = {
-      id:2,
-      nom: 'parking 2',
-      nbPlacesDispo : 170,
-      nbPlacesTotal : 235,
-      statut : 'ABONNES',
-      heureMaj :'20h55',
-    }
-    this.parkings = [];
-   this.parkings.push(parking1);
-   this.parkings.push(parking2);
+    this.parkingService.getParking().subscribe(
+      reponse =>{
+        this.parkings=reponse;
+        this.isLoaded = true;
+      }
+    );
 
   }
 
+  calculStyleStatut(parking: ParkingInfo) {
+    if(parking.statut === 'OUVERT') {
+      return {color: 'green'};
+    } else if (parking.statut === 'ABONNES'){
+      return {color: 'orange'};
+    } else if (parking.statut === 'FERME'){
+      return {color: 'red'};
+    } else { 
+      return {'font-style': 'italic'};
+    }
+  }
 }

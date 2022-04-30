@@ -1,8 +1,8 @@
 export interface ParkingInfo {
     id: number;
-    nom : string;
-    nbPlacesDispo : number;
-    nbPlacesTotal : number;
-    statut : string;
-    heureMaj : string;
+    nom: string;
+    nbPlaceDispo: number;
+    nbPlaceTotal: number;
+    statut: string;
+    heureMaj: string;
 }
