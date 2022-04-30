@@ -7,10 +7,11 @@ import {observable} from 'rxjs';
   selector: 'app-parkings',
   templateUrl: './parkings.component.html',
   styleUrls: ['./parkings.component.scss']
+
 })
 export class ParkingsComponent implements OnInit {
 
-  parkings : ParkingInfo[] | undefined;
+  parkings: ParkingInfo[] = [];
   isLoaded: boolean = false;
 
   constructor(private parkingService: ParkingService) { }
