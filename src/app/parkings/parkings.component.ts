@@ -17,7 +17,7 @@ export class ParkingsComponent implements OnInit {
   constructor(private parkingService: ParkingService) { }
 
   ngOnInit(): void {
-    this.parkingService.getParking().subscribe(
+    this.parkingService.getParkings().subscribe(
       reponse =>{
         this.parkings=reponse;
         this.isLoaded = true;

@@ -1,5 +1,5 @@
 export interface ParkingInfo {
-    id: number;
+    identifiant: number;
     nom: string;
     nbPlaceDispo: number;
     nbPlaceTotal: number;
